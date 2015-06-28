@@ -1,0 +1,21 @@
+﻿@model IEnumerable<StoriesWeb.Models.Story>
+
+@{
+    ViewBag.Title = "My Stories";
+}
+
+<h2>My Stories</h2>
+
+<p>
+    @Html.ActionLink("Create New Story", "Create")
+</p>
+
+@foreach (var item in Model) {
+    <div class="well">
+        <p>@Html.DisplayFor(modelItem => item.Name)</p>
+        @Html.ActionLink("Edit", "Edit", new { id = item.StoryId }) |
+        @Html.ActionLink("Details", "Details", new { id = item.StoryId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.StoryId })
+    </div>
+}
+
