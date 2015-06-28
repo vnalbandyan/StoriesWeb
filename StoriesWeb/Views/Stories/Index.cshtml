@@ -7,15 +7,19 @@
 <h2>My Stories</h2>
 
 <p>
-    @Html.ActionLink("Create New Story", "Create")
+    @Html.ActionLink("+ Create New Story", "Create", null, new { @class = "btn btn-info" })
 </p>
 
 @foreach (var item in Model) {
     <div class="well">
-        <p>@Html.DisplayFor(modelItem => item.Name)</p>
-        @Html.ActionLink("Edit", "Edit", new { id = item.StoryId }) |
-        @Html.ActionLink("Details", "Details", new { id = item.StoryId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = item.StoryId })
+        <div class="row">
+            <div class="col-md-9"><p>@Html.DisplayFor(modelItem => item.Name)</p></div>
+            <div class="col-md-3">
+                @Html.ActionLink("Edit", "Edit", new { id = item.StoryId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StoryId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StoryId })
+            </div>
+        </div>
     </div>
 }
 
