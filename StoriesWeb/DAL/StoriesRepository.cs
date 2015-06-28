@@ -44,15 +44,16 @@ namespace StoriesWeb.DAL
         public void Update(Story story)
         {
             // to trigger foreign key update (groups)
-            var s = _dbContext.Stories.Find(story.StoryId);
-            s.Name = story.Name;
-            s.Description = story.Description;
-            s.Content = story.Content;
-            s.Groups = story.Groups;
-            s.PostedOn = story.PostedOn;
-            s.UserId = story.UserId;
+            //var s = _dbContext.Stories.Find(story.StoryId);
+            //s.Name = story.Name;
+            //s.Description = story.Description;
+            //s.Content = story.Content;
+            //s.Groups = null;
+            //s.Groups = story.Groups;
+            //s.PostedOn = story.PostedOn;
+            //s.UserId = story.UserId;
 
-            //_dbContext.Entry(story).State = System.Data.Entity.EntityState.Modified;
+            _dbContext.Entry(story).State = System.Data.Entity.EntityState.Modified;
         }
     }
 }

@@ -20,30 +20,34 @@ namespace StoriesWeb.Migrations
 
             IList<User> users = new List<User>();
 
-            users.Add(new User { Name = "User 1" });
-            users.Add(new User { Name = "User 2" });
+            users.Add(new User { Name = "User 1" , UserId = 1 });
+            users.Add(new User { Name = "User 2"  , UserId = 2 });
 
-            context.Users.AddRange(users);
+            foreach (var item in users)
+            {
+                context.Users.AddOrUpdate(item);
+            }
 
             IList<Group> groups = new List<Group>();
 
             groups.Add(new Group { Name = "Group 1" , Description = "Test Group 1" , Users = users});
             groups.Add(new Group { Name = "Group 2" , Description = "Test Group 2"});
 
-            context.Groups.AddRange(groups);
+            foreach (var item in groups)
+            {
+                context.Groups.AddOrUpdate(item);
+            }
 
-            //  This method will be called after migrating to the latest version.
+            IList<Story> stories = new List<Story>();
 
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data. E.g.
-            //
-            //    context.People.AddOrUpdate(
-            //      p => p.FullName,
-            //      new Person { FullName = "Andrew Peters" },
-            //      new Person { FullName = "Brice Lambson" },
-            //      new Person { FullName = "Rowan Miller" }
-            //    );
-            //
+            stories.Add(new Story { Name = "Story 1", Description = "first story", Content = "First Story Content", UserId = 1, PostedOn = DateTime.Now, StoryId = 1, Groups = groups });
+            stories.Add(new Story { Name = "Story 2", Description = "second story", Content = "Second Story Content", UserId = 1, PostedOn = DateTime.Now, StoryId = 2 });
+
+            foreach (var item in stories)
+            {
+                context.Stories.AddOrUpdate(item);
+            }
+
         }
     }
 }
